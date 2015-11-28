@@ -10,6 +10,22 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles/main.css" type="text/css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Room Reservation Application</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script>
+        $(function() {
+        $( "#datepicker1" ).datepicker();
+        });
+        </script>
+        <script>
+        $(function() {
+        $( "#datepicker2" ).datepicker();
+        });
+        </script>
     </head>
     <menu id="nav_menu">
         <ul>
@@ -18,15 +34,5 @@ and open the template in the editor.
             <li><a href="reservationController">Cancel Reservation</a></li>
         </ul>
     </menu>
-    
-    <div id="clear"></div>
-    
-    <div>Welcome to our small hotel reservation system.</div><br>
-    <div> Please choose from the menu above.</div>
-        <form action="actionServlet" method="get">
-            <input type="hidden" value="12" name="reservationID">
-            <input type="submit" value="Test Servlet">
-                
-        </form>
-
-</html>
+    <body>
+        
