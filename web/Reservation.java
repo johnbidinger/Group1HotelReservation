@@ -7,6 +7,7 @@ package model;
 
 import java.util.Date;
 import javax.servlet.annotation.WebServlet;
+import java.sql.*;
 
 @WebServlet("/Reservation")
 /**
@@ -22,14 +23,16 @@ public class Reservation {
     private Date checkInDate;
     private Date checkOutDate;
     private String custAddress;
+    private String custCity;
     private String custState;
     private int custZip;
     private String custPhone;
-    private boolean available;
+    private boolean active;
+    private Connection conn;
     
     public Reservation() {};
     
-    public Reservation(int reservationID,int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custState,int custZip,String custPhone,boolean available){
+    public Reservation(int reservationID,int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custCity,String custState,int custZip,String custPhone,boolean active){
         this.reservationID = reservationID;
         this.roomID = roomID;
         this.custFirstName = custFirstName;
@@ -37,10 +40,20 @@ public class Reservation {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.custAddress = custAddress;
+        this.custCity = custCity;
         this.custState = custState;
         this.custZip = custZip;
         this.custPhone = custPhone;
-        this.available = available;
+        this.active = active;
+        
+        //Adding sql insert statement - stu
+        try{
+            createConnection();
+            Statement st = conn.createStatement();
+            st.executeUpdate("INSERT INTO RESERVATION VALUES("+reservationID+", "+roomID+", "+checkInDate+", "+checkOutDate+", '"+custFirstName+"', '"+custLastName+"','"+custAddress+"', '"+custCity+"', '"+custState+"', "+custZip+", '"+custPhone+"', TRUE);");
+        } catch (Exception e) {
+            
+        } // end try-catch
     }
 
     /**
@@ -187,15 +200,47 @@ public class Reservation {
      * @return the available
      */
     public boolean isAvailable() {
-        return available;
+        return active;
     }
 
     /**
      * @param available the available to set
      */
     public void setAvailable(boolean available) {
-        this.available = available;
+        this.active = available;
     }
 
+    public void createConnection(){
+        String url = "jdbc:mysql://90.124.101.70:3306/group1";
+        try{
+            conn = DriverManager.getConnection(url,"","");
+        } catch (Exception noConnection) {
+            System.err.println("Connection Failed!");
+        } // end connection try-catch
+    } // end createConnection method
     
+    public String deleteReservation(int reservationID){
+        String response="";
+    
+        // we may want to include the connection with each method for better error control
+        
+        /*  
+        *   String url = "jdbc:mysql://90.124.101.70:3306/group1";
+        *   try {
+        *       Connection conn = DriverManager.getConnection(url,"","");
+        *   } catch (Exception noConnection) {
+        *       System.err.println("Connection Failed!");
+        *   } // end connection try-catch
+        */
+        try{
+            createConnection();
+            Statement st = conn.createStatement();
+            st.executeUpdate("DELETE FROM reservation WHERE reservation_id="+reservationID);
+            response="Reservation "+reservationID+" has been removed from the system.";
+        } catch (Exception e) {
+            response=reservationID+" was not found in the system.";
+        } // end try-catch
+        
+        return response;
+    } // end deleteReservation method
 }
