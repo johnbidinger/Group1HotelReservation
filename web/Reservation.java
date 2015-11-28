@@ -45,15 +45,7 @@ public class Reservation {
         this.custZip = custZip;
         this.custPhone = custPhone;
         this.active = active;
-        
-        //Adding sql insert statement - stu
-        try{
-            createConnection();
-            Statement st = conn.createStatement();
-            st.executeUpdate("INSERT INTO RESERVATION VALUES("+reservationID+", "+roomID+", "+checkInDate+", "+checkOutDate+", '"+custFirstName+"', '"+custLastName+"','"+custAddress+"', '"+custCity+"', '"+custState+"', "+custZip+", '"+custPhone+"', TRUE);");
-        } catch (Exception e) {
-            
-        } // end try-catch
+    
     }
 
     /**
@@ -211,7 +203,7 @@ public class Reservation {
     }
 
     public void createConnection(){
-        String url = "jdbc:mysql://90.124.101.70:3306/group1";
+        String url = "jdbc:mysql://69.250.36.65:3306/group1";
         try{
             conn = DriverManager.getConnection(url,"","");
         } catch (Exception noConnection) {
@@ -237,10 +229,36 @@ public class Reservation {
             Statement st = conn.createStatement();
             st.executeUpdate("DELETE FROM reservation WHERE reservation_id="+reservationID);
             response="Reservation "+reservationID+" has been removed from the system.";
+            conn.close();
         } catch (Exception e) {
             response=reservationID+" was not found in the system.";
         } // end try-catch
-        
+
         return response;
     } // end deleteReservation method
+    
+    public String createReservation(int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custCity,String custState,int custZip,String custPhone,boolean active){
+        String response="";
+        int currentReservation_id=0;
+        try{
+            createConnection();
+            Statement st = conn.createStatement();
+            
+            ResultSet res_idCount=st.executeQuery("SELECT MAX(reservation_id) FROM reservation");
+            while (res_idCount.next()){
+                try{
+                        currentReservation_id=Integer.parseInt(res_idCount.getString(1));
+                } catch (Exception noRes_id) {
+                        currentReservation_id=0;
+                } // end try-catch
+            } // end while
+            reservationID=currentReservation_id+1;
+            
+            st.executeUpdate("INSERT INTO RESERVATION VALUES("+reservationID+", "+roomID+", "+checkInDate+", "+checkOutDate+", '"+custFirstName+"', '"+custLastName+"','"+custAddress+"', '"+custCity+"', '"+custState+"', "+custZip+", '"+custPhone+"', TRUE)");
+            response="Reservation Created!";
+        } catch (Exception e) {
+            response="Could not create the reservation!";
+        }
+        return response;
+    } // end createReservation method
 }
