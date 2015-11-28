@@ -10,7 +10,12 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    
         <div>You are pulling from the Git NOW!</div>
-    </body>
+        <form action="actionServlet" method="get">
+            <input type="hidden" value="12" name="reservationID">
+            <input type="submit" value="Test Servlet">
+                
+        </form>
+    
 </html>

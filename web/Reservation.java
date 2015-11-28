@@ -6,7 +6,9 @@
 package model;
 
 import java.util.Date;
+import javax.servlet.annotation.WebServlet;
 
+@WebServlet("/Reservation")
 /**
  *
  * @author amv

@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>availabilityInfoPage</h1>
+        <span>${reservationID}</span>
     </body>
 </html>
