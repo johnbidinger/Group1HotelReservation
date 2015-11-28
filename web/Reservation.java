@@ -24,12 +24,12 @@ public class Reservation {
     private String custAddress;
     private String custState;
     private int custZip;
-    private int custPhone;
+    private String custPhone;
     private boolean available;
     
     public Reservation() {};
     
-    public Reservation(int reservationID,int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custState,int custZip,int custPhone,boolean available){
+    public Reservation(int reservationID,int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custState,int custZip,String custPhone,boolean available){
         this.reservationID = reservationID;
         this.roomID = roomID;
         this.custFirstName = custFirstName;
@@ -172,14 +172,14 @@ public class Reservation {
     /**
      * @return the custPhone
      */
-    public int getCustPhone() {
+    public String getCustPhone() {
         return custPhone;
     }
 
     /**
      * @param custPhone the custPhone to set
      */
-    public void setCustPhone(int custPhone) {
+    public void setCustPhone(String custPhone) {
         this.custPhone = custPhone;
     }
 
@@ -196,6 +196,6 @@ public class Reservation {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
     
- 
 }
