@@ -8,6 +8,43 @@
         <servlet-name>actionServlet</servlet-name>
         <url-pattern>/actionServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>reservationController</servlet-name>
+        <servlet-class>reservationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>availabilityController</servlet-name>
+        <servlet-class>availabilityController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>existingReservationController</servlet-name>
+        <servlet-class>existingReservationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cancellationController</servlet-name>
+        <servlet-class>cancellationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reservationController</servlet-name>
+        <url-pattern>/reservationController</url-pattern>
+    </servlet-mapping>
+    <!--
+    <welcome-file-list>
+        <welcome-file>/dateQueryPage.jsp</welcome-file>
+    </welcome-file-list>
+    -->
+    <servlet-mapping>
+        <servlet-name>availabilityController</servlet-name>
+        <url-pattern>/availabilityController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>existingReservationController</servlet-name>
+        <url-pattern>/existingReservationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cancellationController</servlet-name>
+        <url-pattern>/cancellationController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
