@@ -9,7 +9,7 @@
         <form action="reservationController" method="post">
         <h2>Please enter the dates you would like to stay at our hotel.</h2>
         <p>Check-in date: <input type="text" id="datepicker1" name="datepicker1"></p>
-        <p>Check-in date: <input type="text" id="datepicker2" name="datepicker2"></p>
+        <p>Check-out date: <input type="text" id="datepicker2" name="datepicker2"></p>
         <input type="submit" value="Submit">
         </form>
         <br>
