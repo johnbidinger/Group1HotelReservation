@@ -5,14 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Availability Page</title>
-    </head>
-    <body>
+<jsp:include page="/includes/header.html" />
         <h1>availabilityInfoPage</h1>
         <span>${reservationID}</span>
-    </body>
-</html>
+<jsp:include page="/includes/footer.html" />

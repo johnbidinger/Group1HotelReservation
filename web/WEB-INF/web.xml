@@ -28,11 +28,11 @@
         <servlet-name>reservationController</servlet-name>
         <url-pattern>/reservationController</url-pattern>
     </servlet-mapping>
-    <!--
+    
     <welcome-file-list>
         <welcome-file>/dateQueryPage.jsp</welcome-file>
     </welcome-file-list>
-    -->
+    
     <servlet-mapping>
         <servlet-name>availabilityController</servlet-name>
         <url-pattern>/availabilityController</url-pattern>
