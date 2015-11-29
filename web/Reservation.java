@@ -256,6 +256,7 @@ public class Reservation {
             
             st.executeUpdate("INSERT INTO RESERVATION VALUES("+reservationID+", "+roomID+", "+checkInDate+", "+checkOutDate+", '"+custFirstName+"', '"+custLastName+"','"+custAddress+"', '"+custCity+"', '"+custState+"', "+custZip+", '"+custPhone+"', TRUE)");
             response="Reservation Created!";
+            conn.close();
         } catch (Exception e) {
             response="Could not create the reservation!";
         }
