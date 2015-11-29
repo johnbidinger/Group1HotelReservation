@@ -203,9 +203,9 @@ public class Reservation {
     }
 
     public void createConnection(){
-        String url = "jdbc:mysql://69.250.36.65:3306/group1";
         try{
-            conn = DriverManager.getConnection(url,"","");
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/group","app","app");
         } catch (Exception noConnection) {
             System.err.println("Connection Failed!");
         } // end connection try-catch

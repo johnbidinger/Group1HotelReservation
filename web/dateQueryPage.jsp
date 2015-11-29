@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <jsp:include page="/includes/header.html" />
         <form action="reservationController" method="post">
         <h2>Please enter the dates you would like to stay at our hotel.</h2>
