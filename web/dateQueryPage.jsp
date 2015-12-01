@@ -4,6 +4,7 @@
     Author     : amv
 --%>
 
+<%@page import="java.sql.*"%>
 <%@page import="testPackageForAdrian.Reservation"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -46,6 +47,18 @@
             
             out.println("Your check-in date is "+checkInDate+".<br>");
             out.println("Your check-out date is "+checkOutDate+".<br>");
+            String result;
+        
+        try{
+            String dbURL="jdbc:derby://localhost:1527/group1";
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Connection conn = DriverManager.getConnection(dbURL,"group1","group1");
+            result="connection successful";
+        } catch (Exception noConnection) {
+            noConnection.printStackTrace();
+            result="connection failed";
+        } // end connection try-catch
+        out.println(result);
             
             out.println(Reservation.createConnection());
     } // end else

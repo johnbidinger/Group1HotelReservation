@@ -204,12 +204,13 @@ public class Reservation {
 
     public static String createConnection(){
         String result;
-        int roomCount;
+        
         try{
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/group","group1","group1");
             result="connection successful";
         } catch (Exception noConnection) {
+            noConnection.printStackTrace();
             System.err.println("Connection Failed!");
             result="connection failed";
         } // end connection try-catch
