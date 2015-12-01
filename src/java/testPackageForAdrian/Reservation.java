@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package testPackageForAdrian;
 
 import java.util.Date;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +28,7 @@ public class Reservation {
     private int custZip;
     private String custPhone;
     private boolean active;
-    private Connection conn;
+    private static Connection conn=null;
     
     public Reservation() {};
     
@@ -202,13 +202,18 @@ public class Reservation {
         this.active = available;
     }
 
-    public void createConnection(){
+    public static String createConnection(){
+        String result;
+        int roomCount;
         try{
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/group","app","app");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/group","group1","group1");
+            result="connection successful";
         } catch (Exception noConnection) {
             System.err.println("Connection Failed!");
+            result="connection failed";
         } // end connection try-catch
+        return result;
     } // end createConnection method
     
     public String deleteReservation(int reservationID){
