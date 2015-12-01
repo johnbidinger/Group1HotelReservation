@@ -18,4 +18,9 @@
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
     
     out.println("Check-In: "+stringCheckInDate+"     Check-Out: "+stringCheckOutDate+"<br>");
+    try{
+        //out.println(formatter.parse(stringCheckInDate+"<br>")); // used for parsing dates
+    } catch (Exception E) {
+        out.println("oops");
+    }
 %>

@@ -15,16 +15,19 @@
 <jsp:include page="/includes/header.html" />
 
 <%
+    
     //Catch passed parameters
-    Boolean valid=true;
+    Boolean valid=false;
     String datepicker1, datepicker2;
     Date checkInDate=null;
     Date checkOutDate=null;
     datepicker1=request.getParameter("datepicker1");
     datepicker2=request.getParameter("datepicker2");
+    valid=Boolean.parseBoolean(request.getParameter("valid"));
     
     //Check for first visit to page
     if ((datepicker1==null)||(datepicker2==null)){
+        out.println("<title>Date Entry</title>");
         out.println("<h2>Please enter the dates you would like to stay at our hotel.</h2>");
     
 %>
@@ -32,12 +35,14 @@
         
         <p>Check-in date: <input type="text" id="datepicker1" name="datepicker1"></p>
         <p>Check-out date: <input type="text" id="datepicker2" name="datepicker2"></p>
+        <input type="hidden" name="valid" value="<%=valid%>">
         <input type="submit" value="Submit">
         </form>
         <br>
         Or you could check on an existing reservation <a href="searchByReservationID.jsp">here</a>
 <%
-    } else {
+    } else { // check dates
+        out.println("<title>Date Verification</title>");
             DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             try {
                 checkInDate =  formatter.parse(datepicker1);
@@ -62,8 +67,9 @@
             valid=Reservation.checkDates(checkInDate, checkOutDate);
             if (valid){
                 out.println("<form action=\"userInfo.jsp\" method=\"post\">"
-                +"<input type=\"hidden\" name=\"checkInDate\" value="+checkInDate+">"
-                +"<input type=\"hidden\" name=\"checkOutDate\" value="+checkOutDate+">"
+                +"<input type=\"hidden\" name=\"checkInDate\" value="+datepicker1+">"
+                +"<input type=\"hidden\" name=\"checkOutDate\" value="+datepicker2+">"
+                +"<input type=\"hidden\" name=\"valid\" value="+valid+">"
                 +"<input type=\"submit\" value=\"Enter User Info\">"
                 +"</form>");
             } else { // dates are good, on to customer data entry
@@ -74,5 +80,6 @@
             } // end else, dates are bad
             
     } // end else
+    
 %>
     <jsp:include page="/includes/footer.html" />
