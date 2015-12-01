@@ -8,6 +8,7 @@ package testPackageForAdrian;
 import java.util.Date;
 import javax.servlet.annotation.WebServlet;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 @WebServlet("/Reservation")
 /**
@@ -200,6 +201,18 @@ public class Reservation {
      */
     public void setAvailable(boolean available) {
         this.active = available;
+    }
+    
+    public static Boolean checkDates(Date checkInDate, Date checkOutDate){
+        Boolean valid=true;
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/YYYY");
+        Date currentDate = new Date();
+        
+        if ((checkInDate.before(currentDate))||(checkOutDate.before(currentDate))||checkOutDate.before(checkInDate)){
+            valid=false;
+        } // end if
+        return valid;
     }
 
     public static String createConnection(){

@@ -4,6 +4,8 @@
     Author     : amv
 --%>
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.sql.*"%>
 <%@page import="testPackageForAdrian.Reservation"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -14,6 +16,7 @@
 
 <%
     //Catch passed parameters
+    Boolean valid=true;
     String datepicker1, datepicker2;
     Date checkInDate=null;
     Date checkOutDate=null;
@@ -35,32 +38,41 @@
         Or you could check on an existing reservation <a href="searchByReservationID.jsp">here</a>
 <%
     } else {
-            
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             try {
-            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-                checkInDate = formatter.parse(datepicker1);
+                checkInDate =  formatter.parse(datepicker1);
                 checkOutDate = formatter.parse(datepicker2);
                 
             } catch (Exception wrongDate){
                 out.println("Date formatter failed!");
-            } // end catch
+            } // end try-catch parse string to date
             
-            out.println("Your check-in date is "+checkInDate+".<br>");
-            out.println("Your check-out date is "+checkOutDate+".<br>");
-            String result;
-        
-        try{
-            String dbURL="jdbc:derby://localhost:1527/group1";
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            Connection conn = DriverManager.getConnection(dbURL,"group1","group1");
-            result="connection successful";
-        } catch (Exception noConnection) {
-            noConnection.printStackTrace();
-            result="connection failed";
-        } // end connection try-catch
-        out.println(result);
+            out.println("Your check-in date is "+formatter.format(checkInDate)+".<br>");
+            out.println("Your check-out date is "+formatter.format(checkOutDate)+".<br>");
+           
+            //out.println(Reservation.createConnection()+"<br>"); // NOT WORKING RIGHT NOW
             
-            out.println(Reservation.createConnection());
+            Date currentDate = new Date();
+            try{
+            //out.println(formatter.format(currentDate)); // for debugging purposes
+            } catch (Exception E) {
+                out.println("error formatting currentDate<br>");
+            } // end try-catch for currentDate capture
+            
+            valid=Reservation.checkDates(checkInDate, checkOutDate);
+            if (valid){
+                out.println("<form action=\"userInfo.jsp\" method=\"post\">"
+                +"<input type=\"hidden\" name=\"checkInDate\" value="+checkInDate+">"
+                +"<input type=\"hidden\" name=\"checkOutDate\" value="+checkOutDate+">"
+                +"<input type=\"submit\" value=\"Enter User Info\">"
+                +"</form>");
+            } else { // dates are good, on to customer data entry
+                out.println("There is something wrong with your dates.<br>"
+                +"<form action=\"dateQueryPage.jsp\" method=\"post\">"
+                +"<input type=\"submit\" value=\"Try Again\">"
+                +"</form>");
+            } // end else, dates are bad
+            
     } // end else
 %>
     <jsp:include page="/includes/footer.html" />

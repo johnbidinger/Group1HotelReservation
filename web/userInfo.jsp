@@ -4,14 +4,18 @@
     Author     : amv
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+<jsp:include page="/includes/header.html" />
+<title>Customer Data</title>
+<%
+    String stringCheckInDate, stringCheckOutDate;
+    
+    //catch passed paramters
+    stringCheckInDate=request.getParameter("checkInDate");
+    stringCheckOutDate=request.getParameter("checkOutDate");
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+    
+    out.println("Check-In: "+stringCheckInDate+"     Check-Out: "+stringCheckOutDate+"<br>");
+%>
