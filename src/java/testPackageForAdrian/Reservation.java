@@ -30,6 +30,7 @@ public class Reservation {
     private String custPhone;
     private boolean active;
     private static Connection conn=null;
+    public static String stringCheckInDate, stringCheckOutDate;
     
     public Reservation() {};
     
@@ -294,5 +295,11 @@ public class Reservation {
             
         return valid;
     } // end checkNameInput method
+    
+    public static Boolean reservationDateCheck(String stringCheckInDate, String stringCheckOutDate){
+        Boolean valid=true;
+        
+        return valid;
+    } // end 
     
 }

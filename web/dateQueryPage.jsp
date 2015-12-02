@@ -18,6 +18,7 @@
     
     //Catch passed parameters
     Boolean valid=false;
+    Boolean reservationDateCheck=true;
     String datepicker1, datepicker2;
     Date checkInDate=null;
     Date checkOutDate=null;
@@ -39,7 +40,6 @@
         <input type="submit" value="Submit">
         </form>
         <br>
-        Or you could check on an existing reservation <a href="searchByReservationID.jsp">here</a>
 <%
     } else { // check dates
         out.println("<title>Date Verification</title>");
@@ -65,7 +65,9 @@
             } // end try-catch for currentDate capture
             
             valid=Reservation.checkDates(checkInDate, checkOutDate);
-            if (valid){
+            //reservationDateCheck=Reservation.reservationDateCheck(datepicker1, datepicker2); //Check date availability
+
+            if ((valid)&&(reservationDateCheck)){
                 out.println("<form action=\"userInfo.jsp\" method=\"post\">"
                 +"<input type=\"hidden\" name=\"checkInDate\" value="+datepicker1+">"
                 +"<input type=\"hidden\" name=\"checkOutDate\" value="+datepicker2+">"
