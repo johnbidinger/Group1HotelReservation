@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
  */
 public class Reservation {
     
-    private int reservationID;
+    private static int reservationID;
     private int roomID;
     private String custFirstName;
     private String custLastName;
@@ -77,11 +77,18 @@ public class Reservation {
         this.roomID = roomID;
     }
 
-    /**
-     * @return the custFirstName
-     */
-    public String getCustFirstName() {
-        return custFirstName;
+    
+    public String getCustFirstName(int reservationID) {
+    String results="";
+        try{
+            createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select custFirstName FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
     }
 
     /**
@@ -246,7 +253,7 @@ public class Reservation {
         try{
             createConnection();
             Statement st = conn.createStatement();
-            st.executeUpdate("DELETE FROM reservation WHERE reservation_id="+reservationID);
+            st.executeUpdate("DELETE FROM reservation WHERE reservationID="+reservationID);
             response="Reservation "+reservationID+" has been removed from the system.";
             conn.close();
         } catch (Exception e) {
@@ -256,7 +263,7 @@ public class Reservation {
         return response;
     } // end deleteReservation method
     
-    public String createReservation(int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custCity,String custState,int custZip,String custPhone,boolean active){
+    public static String createReservation(int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custCity,String custState,int custZip,String custPhone,boolean active){
         String response="";
         int currentReservation_id=0;
         try{
@@ -281,4 +288,11 @@ public class Reservation {
         }
         return response;
     } // end createReservation method
+    
+    public static Boolean checkNameInput(String name){
+        Boolean valid=true;
+            
+        return valid;
+    } // end checkNameInput method
+    
 }
