@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import testPackageForAdrian.Reservation;
 
 /**
  *
@@ -56,9 +57,17 @@ public class ReservationUtility extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String reservationID;
-            reservationID = request.getParameter("reservationID");
-            Reservation.reservationIsValid();
+            String reservationIDString;
+            String firstName, lastName, checkIn, checkOut, custPhone, custZip, custState;
+            Reservation reservation = new Reservation();
+            reservationIDString = request.getParameter("reservationID");
+            int reservationID = Integer.parseInt(reservationIDString);
+           if(Reservation.reservationIsValid(reservationID )){
+               firstName = reservation.getCustFirstName(reservationID);
+               lastName = reservation.getCustLastName(reservationID);
+               
+               
+           }
 
             //processRequest(request, response);
     }

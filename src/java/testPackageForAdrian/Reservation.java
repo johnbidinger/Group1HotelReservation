@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.servlet.annotation.WebServlet;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/Reservation")
 /**
@@ -365,9 +367,22 @@ public class Reservation {
         
         return valid;
     } // end 
-    public boolean reservationIsValid(){
+
+    /**
+     *
+     * @param reservation
+     * @return
+     */
+    public static Boolean reservationIsValid(int reservation){
         String connection = createConnection();
-        State
+        Statement st = null;
+        try {
+            st = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Need to check if reservation is valid
+        //ResultSet results = st.executeQuery("")
         return true;
     }
     
