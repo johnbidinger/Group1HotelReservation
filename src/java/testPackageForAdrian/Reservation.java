@@ -82,7 +82,7 @@ public class Reservation {
     public String getCustFirstName(int reservationID) {
     String results="";
         try{
-            createConnection();
+            String connection = createConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("Select custFirstName FROM reservation WHERE reservationID="+reservationID);
             results=rs.getString(1);
@@ -100,10 +100,20 @@ public class Reservation {
     }
 
     /**
+     * @param reservationID
      * @return the custLastName
      */
-    public String getCustLastName() {
-        return custLastName;
+    public String getCustLastName(int reservationID) {
+        String results="";
+        try{
+            String connection = createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select custLanstName FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
     }
 
     /**
@@ -114,10 +124,21 @@ public class Reservation {
     }
 
     /**
+     * @param reservationID
      * @return the checkInDate
      */
-    public Date getCheckInDate() {
-        return checkInDate;
+    public String getCheckInDate(int reservationID) {
+        String results="";
+        try{
+            String connection = createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select checkInDate FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
+        
     }
 
     /**
@@ -128,10 +149,21 @@ public class Reservation {
     }
 
     /**
+     * @param reservationID
      * @return the checkOutDate
      */
-    public Date getCheckOutDate() {
-        return checkOutDate;
+    public String getCheckOutDate(int reservationID) {
+        String results="";
+        try{
+            String connection = createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select checkOutDate FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
+        
     }
 
     /**
@@ -156,10 +188,21 @@ public class Reservation {
     }
 
     /**
+     * @param reservationID
      * @return the custState
      */
-    public String getCustState() {
-        return custState;
+    public String getCustState(int reservationID) {
+        String results="";
+        try{
+            String connection = createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select custState FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
+        
     }
 
     /**
@@ -170,10 +213,21 @@ public class Reservation {
     }
 
     /**
+     * @param reservationID
      * @return the custZip
      */
-    public int getCustZip() {
-        return custZip;
+    public String getCustZip(int reservationID) {
+        String results="";
+        try{
+            String connection = createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select custLanstName FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
+        
     }
 
     /**
@@ -186,8 +240,18 @@ public class Reservation {
     /**
      * @return the custPhone
      */
-    public String getCustPhone() {
-        return custPhone;
+    public String getCustPhone(int reservationID) {
+        String results="";
+        try{
+            String connection = createConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("Select custLanstName FROM reservation WHERE reservationID="+reservationID);
+            results=rs.getString(1);
+        } catch (Exception e) {
+            
+        }
+        return results;
+        
     }
 
     /**
@@ -301,5 +365,10 @@ public class Reservation {
         
         return valid;
     } // end 
+    public boolean reservationIsValid(){
+        String connection = createConnection();
+        State
+        return true;
+    }
     
 }

@@ -4,6 +4,10 @@
         <servlet-name>actionServlet</servlet-name>
         <servlet-class>testPackageForAdrian.actionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReservationUtility</servlet-name>
+        <servlet-class>business.ReservationUtility</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>actionServlet</servlet-name>
         <url-pattern>/actionServlet</url-pattern>
@@ -28,11 +32,9 @@
         <servlet-name>reservationController</servlet-name>
         <url-pattern>/reservationController</url-pattern>
     </servlet-mapping>
-    
     <welcome-file-list>
         <welcome-file>/dateQueryPage.jsp</welcome-file>
     </welcome-file-list>
-    
     <servlet-mapping>
         <servlet-name>availabilityController</servlet-name>
         <url-pattern>/availabilityController</url-pattern>
@@ -44,6 +46,10 @@
     <servlet-mapping>
         <servlet-name>cancellationController</servlet-name>
         <url-pattern>/cancellationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReservationUtility</servlet-name>
+        <url-pattern>/ReservationUtility</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

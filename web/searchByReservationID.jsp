@@ -13,15 +13,15 @@
     </head>
     <body>
         <h1>Check on an existing reservation</h1>
-        <form action="existingReservationController" method="post">
+        <form action="ReservationUtility" method="post">
             <table>
                 <tr>
                     <td>Please enter your reservation ID:</td>
-                    <td><input type="text" name="enteredReservationID">
+                    <td><input type="text" name="ReservationID" value="12">
                 </tr>
             </table>
             <br>
-            <input type="submit" value="Check for reservation">
+            <input type="submit" value="Check for reservation" >
         </form>
     </body>
 </html>
