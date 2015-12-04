@@ -17,7 +17,7 @@
             <table>
                 <tr>
                     <td>Please enter your reservation ID:</td>
-                    <td><input type="text" name="ReservationID" value="12">
+                    <td><input type="text" name="reservationID" value="12">
                 </tr>
             </table>
             <br>

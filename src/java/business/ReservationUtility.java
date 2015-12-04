@@ -55,19 +55,35 @@ public class ReservationUtility extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String reservationIDString;
+            String reservationIDString, url;
             String firstName, lastName, checkIn, checkOut, custPhone, custZip, custState;
             Reservation reservation = new Reservation();
             reservationIDString = request.getParameter("reservationID");
             int reservationID = Integer.parseInt(reservationIDString);
-           if(Reservation.reservationIsValid(reservationID )){
+          // if(Reservation.reservationIsValid(reservationID )){
                firstName = reservation.getCustFirstName(reservationID);
                lastName = reservation.getCustLastName(reservationID);
+               checkIn = reservation.getCheckInDate(reservationID);
+               checkOut = reservation.getCheckOutDate(reservationID);
+               custPhone = reservation.getCustPhone(reservationID);
+               custState = reservation.getCustState(reservationID);
+               custZip = reservation.getCustZip(reservationID);
+               request.setAttribute("reservationID", reservationID);
+               request.setAttribute("lastName", lastName);
+               request.setAttribute("firstName", firstName);
+               request.setAttribute("checkIn", checkIn);
+               request.setAttribute("checkOut", checkOut);
+               request.setAttribute("custPhone", checkOut);
+               request.setAttribute("custState", custState);
+               request.setAttribute("custZip", custZip);
+               url = "/existingReservationDetails.jsp";
+               getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
                
-               
-           }
+           //}
 
             //processRequest(request, response);
     }
@@ -81,7 +97,7 @@ public class ReservationUtility extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
