@@ -82,15 +82,29 @@ public class Reservation {
 
     
     public String getCustFirstName(int reservationID) {
-    String results="";
         try{
+            String dbURL = "jbdc:mysql://localhost:33066/murach";
+            String username = "root";
+            String password = "sesame";
+            Connection connection = DriverManager.getConnection(
+                    dbURL,username, password);
+        }catch(SQLException e){
+            for(Throwable t : e)
+                t.printStackTrace();
+        }
+    
+    
+    
+    
+    String results="";
+        /*try{
             String connection = createConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("Select custFirstName FROM reservation WHERE reservationID="+reservationID);
             results=rs.getString(1);
         } catch (Exception e) {
             
-        }
+        }*/
         return results;
     }
 

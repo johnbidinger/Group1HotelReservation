@@ -5,8 +5,12 @@
  */
 package business;
 
+import com.mysql.jdbc.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +66,26 @@ public class ReservationUtility extends HttpServlet {
             Reservation reservation = new Reservation();
             reservationIDString = request.getParameter("reservationID");
             int reservationID = Integer.parseInt(reservationIDString);
-          // if(Reservation.reservationIsValid(reservationID )){
+            //Start comment removal
+            /*
+            try{
+            String dbURL = "jbdc:mysql://localhost:33066/murach";
+            String username = "root";
+            String password = "sesame";
+            Connection connection = DriverManager.getConnection(
+                    dbURL,username, password);
+        }catch(SQLException e){
+            for(Throwable t : e)
+                t.printStackTrace();
+        }
+            Statement statement = connection.createStatement();
+            ResultSet reservationIDResult = statement.executeQuery(
+                    "SELECT * FROM ROOM");
+            while(reservationIDResult.next()){
+                reservationID = reservationIDResult.getString("room_id");
+            }*///end comment REMOVAL
+    
+          // if(Reservation.reservationIsValid(reservationID )){//No connection at this time
                firstName = reservation.getCustFirstName(reservationID);
                lastName = reservation.getCustLastName(reservationID);
                checkIn = reservation.getCheckInDate(reservationID);
@@ -70,7 +93,7 @@ public class ReservationUtility extends HttpServlet {
                custPhone = reservation.getCustPhone(reservationID);
                custState = reservation.getCustState(reservationID);
                custZip = reservation.getCustZip(reservationID);
-               request.setAttribute("reservationID", reservationID);
+               
                request.setAttribute("lastName", lastName);
                request.setAttribute("firstName", firstName);
                request.setAttribute("checkIn", checkIn);
@@ -78,14 +101,15 @@ public class ReservationUtility extends HttpServlet {
                request.setAttribute("custPhone", checkOut);
                request.setAttribute("custState", custState);
                request.setAttribute("custZip", custZip);
-               url = "/existingReservationDetails.jsp";
-               getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
-               
-           //}
-
-            //processRequest(request, response);
+           //}//need valid connection to test if reservationID exists
+    
+            request.setAttribute("reservationID", reservationID);
+            url = "/existingReservationDetails.jsp";
+            
+            getServletContext()
+                        .getRequestDispatcher(url)
+                      .forward(request, response);
+            //processRequest(request, response); // not used at this time
     }
 
     /**
