@@ -57,21 +57,66 @@
         + "<input type=\"submit\" value=\"Continue\" />"
         + "</form>");
     } else {
-        out.println("entering data verification<br>");
+        //out.println("entering data verification<br>"); // for debugging
         firstNameValid=Reservation.checkNameInput(custFirstName);
-            out.println("first name is "+firstNameValid+"<br>");
         lastNameValid=Reservation.checkNameInput(custLastName);
-            out.println("last name is "+lastNameValid+"<br>");
         addressValid=Reservation.checkAddressInput(custAddress);
-            out.println("address is "+addressValid+"<br>");
         cityValid=Reservation.checkCityInput(custCity);
-            out.println("city is "+cityValid+"<br>");
         stateValid=Reservation.checkStateInput(custState);
-            out.println("state is "+stateValid+"<br>");
         zipValid=Reservation.checkZipInput(custZip);
-            out.println("zip is "+zipValid+"<br>");
         phoneValid=Reservation.checkPhoneInput(custPhone);
-            out.println("phone is "+phoneValid+"<br>");
+            if ((firstNameValid)&&(lastNameValid)&&(addressValid)&&(cityValid)&&(stateValid)&&(zipValid)&&(phoneValid)){
+            out.println("Check-in date: "+stringCheckInDate+"<br>");
+            out.println("Check-out date: "+stringCheckOutDate+"<br>");
+            out.println("First name: "+custFirstName+"<br>");
+            out.println("Last name: "+custLastName+"<br>");
+            out.println("Address: "+custAddress+"<br>");
+            out.println("City: "+custCity+"<br>");
+            out.println("State: "+custState+"<br>");
+            out.println("Zip Code: "+custZip+"<br>");
+            out.println("Phone: "+custPhone+"<br>");
+                out.println("<form action=\"createReservation.jsp\" method=\"post\">"
+                    + "<input type=\"hidden\" name=\"checkInDate\" value=\""+stringCheckInDate+"\" />"
+                    + "<input type=\"hidden\" name=\"checkOutDate\" value=\""+stringCheckOutDate+"\" />"
+                    + "<input type=\"hidden\" name=\"custFirstName\" value=\""+custFirstName+"\" />"
+                    + "<input type=\"hidden\" name=\"custLastName\" value=\""+custLastName+"\" />"
+                    + "<input type=\"hidden\" name=\"custAddress\" value=\""+custAddress+"\" />"
+                    + "<input type=\"hidden\" name=\"custCity\" value=\""+custCity+"\" />"
+                    + "<input type=\"hidden\" name=\"custState\" value=\""+custState+"\" />"
+                    + "<input type=\"hidden\" name=\"custZip\" value=\""+custZip+"\" />"
+                    + "<input type=\"hidden\" name=\"custPhone\" value=\""+custPhone+"\" <br> />"
+                    + "<input type=\"submit\" value=\"Create Reservation\" /><br>");
+            } else { // end if inputs are valid
+                out.println("<form action=\"userInfo.jsp\" method=\"post\" >");
+                    if (firstNameValid==false){
+                        out.println("There are issues with the first name entered.<br>"); 
+                    } 
+                    if (lastNameValid==false){
+                        out.println("There are issues with the last name entered.<br>");
+                    }
+                    if(addressValid==false){
+                        out.println("There are issues with the address entered.<br>");
+                    }
+                    if (cityValid==false){
+                        out.println("There are issues with the city entered.<br>");
+                    }
+                    if (stateValid==false){
+                        out.println("There are issues with the state entered.<br>");
+                    }
+                    if (zipValid==false){
+                        out.println("There are issues with the zip code entered.<br>");
+                    }
+                    if (phoneValid==false){
+                        out.println("There are issues with the phone number entered.<br>");
+                    } // end if else statements
+                out.println("You must re-enter your data.<br>");
+                out.println("<input type=\"hidden\" name=\"checkInDate\" value=\""+stringCheckInDate+"\" />");
+                out.println("<input type=\"hidden\" name=\"checkOutDate\" value=\""+stringCheckOutDate+"\" />");
+                out.println("<input type=\"submit\" value=\"Re-enter Data\" /><br>"
+                + "");
+                       
+                    
+            } // end else
     } // end else
     
 %>
