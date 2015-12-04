@@ -239,9 +239,7 @@ public class Reservation {
         this.custZip = custZip;
     }
 
-    /**
-     * @return the custPhone
-     */
+
     public String getCustPhone(int reservationID) {
         String results="";
         try{
@@ -357,10 +355,34 @@ public class Reservation {
     } // end createReservation method
     
     public static Boolean checkNameInput(String name){
-        Boolean valid=true;
-            
+        Boolean valid=name.matches("([a-zA-Z -]){1,20}");
         return valid;
     } // end checkNameInput method
+    
+    public static Boolean checkAddressInput(String custAddress){
+        Boolean valid=custAddress.matches("([0-9a-zA-Z -]){1,30}");
+        return valid;
+    } // end checkAddressInput method
+    
+    public static Boolean checkCityInput(String custCity){
+        Boolean valid=custCity.matches("[a-zA-Z -]{1,30}");
+        return valid;
+    } // end checkCityInput method
+    
+    public static Boolean checkStateInput(String custState){
+        Boolean valid=custState.matches("(a-zA-Z){2}");
+        return valid;
+    } // end checkStateInput method
+    
+    public static Boolean checkZipInput(String custZip){
+        Boolean valid=custZip.matches("(0-9){7}");
+        return valid;
+    } // end checkZipInput method
+    
+    public static Boolean checkPhoneInput(String custPhone){
+        Boolean valid=custPhone.matches("(0-9 -){12}");
+        return valid;
+    } // end checkPhoneInput method
     
     public static Boolean reservationDateCheck(String stringCheckInDate, String stringCheckOutDate){
         Boolean valid=true;
