@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,23 +68,25 @@ public class ReservationUtility extends HttpServlet {
             reservationIDString = request.getParameter("reservationID");
             int reservationID = Integer.parseInt(reservationIDString);
             //Start comment removal
-            /*
+            
             try{
             String dbURL = "jbdc:mysql://localhost:33066/murach";
             String username = "root";
             String password = "sesame";
             Connection connection = DriverManager.getConnection(
                     dbURL,username, password);
+                java.sql.Statement statement = connection.createStatement();
+            ResultSet reservationIDResult = statement.executeQuery(
+                    "SELECT * FROM ROOM");
+            while(reservationIDResult.next()){
+                reservationIDString = reservationIDResult.getString("room_id");
+            }
         }catch(SQLException e){
             for(Throwable t : e)
                 t.printStackTrace();
         }
-            Statement statement = connection.createStatement();
-            ResultSet reservationIDResult = statement.executeQuery(
-                    "SELECT * FROM ROOM");
-            while(reservationIDResult.next()){
-                reservationID = reservationIDResult.getString("room_id");
-            }*///end comment REMOVAL
+            
+            //end comment REMOVAL
     
           // if(Reservation.reservationIsValid(reservationID )){//No connection at this time
                firstName = reservation.getCustFirstName(reservationID);
@@ -102,7 +105,9 @@ public class ReservationUtility extends HttpServlet {
                request.setAttribute("custState", custState);
                request.setAttribute("custZip", custZip);
            //}//need valid connection to test if reservationID exists
-    
+           
+            request.setAttribute("reservationIDString", reservationIDString);
+            
             request.setAttribute("reservationID", reservationID);
             url = "/existingReservationDetails.jsp";
             
