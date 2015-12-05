@@ -84,7 +84,7 @@
                     + "<input type=\"hidden\" name=\"custCity\" value=\""+custCity+"\" />"
                     + "<input type=\"hidden\" name=\"custState\" value=\""+custState+"\" />"
                     + "<input type=\"hidden\" name=\"custZip\" value=\""+custZip+"\" />"
-                    + "<input type=\"hidden\" name=\"custPhone\" value=\""+custPhone+"\" <br> />"
+                    + "<input type=\"hidden\" name=\"custPhone\" value=\""+custPhone+"\"/>  <br> "
                     + "<input type=\"submit\" value=\"Create Reservation\" /><br>");
             } else { // end if inputs are valid
                 out.println("<form action=\"userInfo.jsp\" method=\"post\" >");
