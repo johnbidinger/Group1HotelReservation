@@ -384,17 +384,17 @@ public class Reservation {
     } // end checkCityInput method
     
     public static Boolean checkStateInput(String custState){
-        Boolean valid=custState.matches("(a-zA-Z){2}");
+        Boolean valid=custState.matches("[a-zA-Z]{2}");
         return valid;
     } // end checkStateInput method
     
     public static Boolean checkZipInput(String custZip){
-        Boolean valid=custZip.matches("(0-9){7}");
+        Boolean valid=custZip.matches("[0-9]{5}");
         return valid;
     } // end checkZipInput method
     
     public static Boolean checkPhoneInput(String custPhone){
-        Boolean valid=custPhone.matches("(0-9 -){12}");
+        Boolean valid=custPhone.matches("[0-9 -]{12}");
         return valid;
     } // end checkPhoneInput method
     
