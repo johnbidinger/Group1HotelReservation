@@ -15,23 +15,19 @@
     <body>
         
         <%
-            Connection conn = null;
+        Connection conn = null;
             try{
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/group1","group1","group1");
-        } catch (Exception e) {
-            //noConnection.printStackTrace();
-            do {
-                //System.out.println("SQLState:" + e.getSQLState());
-                //System.out.println("Error Code:" + e.getErrorCode());
-                System.out.println("Message:" + e.getMessage());
-                Throwable t = e.getCause();
-            while(t != null) {
-                System.out.println("Cause:" + t);
-                t = t.getCause();
-            } // end 
-        //e = e.getNextException();
-    } while (e != null);
+            out.println("connection successful");
+        } catch (SQLException noConnection) {
+            noConnection.printStackTrace();
+            System.err.println("Connection Failed!");
+            System.out.println("SQLstate: " + noConnection.getSQLState());
+            System.out.println("  Error Code: " + noConnection.getErrorCode());
+            System.out.println("  Message:    " + noConnection.getMessage());
+            noConnection = noConnection.getNextException();
+            out.println("connection failed");
         } // end connection try-catch
         %>
         <h1>Hello World!</h1>
