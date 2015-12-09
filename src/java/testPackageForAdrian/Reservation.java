@@ -5,10 +5,12 @@
  */
 package testPackageForAdrian;
 
+import java.io.*;
 import java.util.Date;
 import javax.servlet.annotation.WebServlet;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +35,7 @@ public class Reservation {
     private boolean active;
     private static Connection conn=null;
     public static String stringCheckInDate, stringCheckOutDate;
-    
+    public static ArrayList<String> db = new ArrayList<>(); 
     public Reservation() {};
     
     public Reservation(int reservationID,int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custCity,String custState,int custZip,String custPhone,boolean active){
@@ -420,6 +422,14 @@ public class Reservation {
         //Need to check if reservation is valid
         //ResultSet results = st.executeQuery("")
         return true;
-    }
+    }  // end reservationIsValid method
+    
+    public static void initiateArray(){
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("./db"));
+        } catch (Exception e) {
+            
+        } // end try-catch
+    } // end initiateArray method
     
 }
