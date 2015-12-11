@@ -427,7 +427,7 @@ public class Reservation {
     public static String initiateArray(){
         String results="";
         try{
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/Stu/NetBeansProjects/CMIS495/Group1HotelReservation/src/java/testPackageForAdrian/db"));
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/joe/NetBeansProjects/HotelReservationCMSC495/src/java/testPackageForAdrian/db"));
              while(reader != null){
                  results=reader.readLine();
              } // end while

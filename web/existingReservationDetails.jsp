@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Check on an existing reservation</h1>
-        <% String existingReservationID = (String) session.getAttribute("enteredReservationID");%>
+        
         Details for reservation ID 
-        <span>${reservationIDString}</span>
+        <span>${reservationID}</span>
         <br>
         <br>
         Click <a href="cancelExistingReservation.jsp">here </a> to cancel this reservation.

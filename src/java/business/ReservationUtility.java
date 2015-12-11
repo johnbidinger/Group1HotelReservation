@@ -5,7 +5,6 @@
  */
 package business;
 
-import com.mysql.jdbc.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -70,7 +69,7 @@ public class ReservationUtility extends HttpServlet {
             //Start comment removal
             
             try{
-            String dbURL = "jbdc:mysql://localhost:33066/murach";
+            String dbURL = "jdbc:mysql://localhost:33066/murach";
             String username = "root";
             String password = "sesame";
             Connection connection = DriverManager.getConnection(
@@ -79,12 +78,13 @@ public class ReservationUtility extends HttpServlet {
             ResultSet reservationIDResult = statement.executeQuery(
                     "SELECT * FROM ROOM");
             while(reservationIDResult.next()){
-                reservationIDString = reservationIDResult.getString("room_id");
-            }
+                reservationID = reservationIDResult.getInt("room_id");
+                }
         }catch(SQLException e){
             for(Throwable t : e)
                 t.printStackTrace();
         }
+            
             
             //end comment REMOVAL
     
@@ -107,6 +107,7 @@ public class ReservationUtility extends HttpServlet {
            //}//need valid connection to test if reservationID exists
            
             request.setAttribute("reservationIDString", reservationIDString);
+            System.out.println("reservationIDString");
             
             request.setAttribute("reservationID", reservationID);
             url = "/existingReservationDetails.jsp";
@@ -114,6 +115,8 @@ public class ReservationUtility extends HttpServlet {
             getServletContext()
                         .getRequestDispatcher(url)
                       .forward(request, response);
+            
+            
             //processRequest(request, response); // not used at this time
     }
 
