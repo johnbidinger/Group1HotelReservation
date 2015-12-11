@@ -35,7 +35,7 @@ public class Reservation {
     private boolean active;
     private static Connection conn=null;
     public static String stringCheckInDate, stringCheckOutDate;
-    public static ArrayList<String> db = new ArrayList<>(); 
+    public static String[] db = new String[4]; 
     public Reservation() {};
     
     public Reservation(int reservationID,int roomID,String custFirstName,String custLastName,Date checkInDate,Date checkOutDate,String custAddress,String custCity,String custState,int custZip,String custPhone,boolean active){
@@ -424,12 +424,41 @@ public class Reservation {
         return true;
     }  // end reservationIsValid method
     
-    public static void initiateArray(){
+    public static String initiateArray(){
+        String results="";
         try{
-            BufferedReader reader = new BufferedReader(new FileReader("./db"));
-        } catch (Exception e) {
-            
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/Stu/NetBeansProjects/CMIS495/Group1HotelReservation/src/java/testPackageForAdrian/db"));
+             while(reader != null){
+                 results=reader.readLine();
+             } // end while
+        } catch (IOException e) {
+            results="That didn't work<br>"; // for debugging
+            e.printStackTrace();
         } // end try-catch
+        
+        return results;
     } // end initiateArray method
+    
+    public static boolean deleteFile(){
+        boolean success=true;
+        File database = new File("db");
+        success=database.delete();
+        return success;
+    } // end deleteFile method
+    
+    public static void writeFile (){
+    try{
+        BufferedWriter outputWriter = null;
+        outputWriter = new BufferedWriter(new FileWriter("db"));
+            for (int i = 0; i < db.length; i++) {
+                outputWriter.write(db[i]+",");
+                outputWriter.newLine();
+            } // end for loop
+        outputWriter.flush();  
+        outputWriter.close();  
+    } catch (IOException uhOh) {
+        System.err.println(uhOh);
+    } // end try-catch
+} // end writeFile method
     
 }

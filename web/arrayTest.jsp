@@ -1,8 +1,9 @@
 <%-- 
-    Document   : availabilityInfoPage
-    Created on : Nov 24, 2015, 8:12:55 PM
-    Author     : amv
+    Document   : arrayTest
+    Created on : Dec 10, 2015, 7:04:05 PM
+    Author     : Stu
 --%>
+
 <%@page import="testPackageForAdrian.Reservation"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
